@@ -1,4 +1,5 @@
 import { useFocusEffect, useRouter } from 'expo-router';
+import * as WebBrowser from 'expo-web-browser';
 import { useCallback, useEffect, useState } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import Animated, {
@@ -137,6 +138,11 @@ export default function HomeScreen() {
     setMenuCoro(coro);
   };
 
+  const openPrivacy = () => {
+    feel('tick');
+    WebBrowser.openBrowserAsync('https://palcoroweb.vercel.app/privacy');
+  };
+
   return (
     <>
     <View className="flex-1 pb-24" style={{ backgroundColor: COLORS.canvas, paddingTop: insets.top + 12 }}>
@@ -189,6 +195,14 @@ export default function HomeScreen() {
             ))}
           </ScrollView>
         ) : null}
+
+        <Pressable
+          onPress={openPrivacy}
+          hitSlop={8}
+          style={{ marginTop: 18, alignSelf: 'center', paddingVertical: 8, paddingHorizontal: 16 }}
+        >
+          <Text style={[text.micro, { color: COLORS.inkFaint }]}>Política de privacidad</Text>
+        </Pressable>
       </View>
     </View>
 
